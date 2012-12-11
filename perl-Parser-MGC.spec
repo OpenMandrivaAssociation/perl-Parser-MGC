@@ -1,21 +1,21 @@
 %define upstream_name    Parser-MGC
 %define upstream_version 0.08
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    Build simple recursive-descent parsers
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module//%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Build simple recursive-descent parsers
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module//%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(File::Slurp)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Module::Build::Compat)
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(File::Slurp)
+BuildRequires:	perl(Test::More)
+BuildRequires:	perl(Module::Build::Compat)
+BuildArch:	noarch
 
 %description
 This base class provides a low-level framework for building
@@ -35,24 +35,30 @@ implement grammars that require backtracking.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 %make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes README LICENSE META.yml
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
 
+%changelog
+* Sat Apr 23 2011 Funda Wang <fwang@mandriva.org> 0.80.0-2mdv2011.0
++ Revision: 657461
+- rebuild for updated spec-helper
+
+* Sat Mar 26 2011 Guillaume Rousse <guillomovitch@mandriva.org> 0.80.0-1
++ Revision: 648577
+- update to new version 0.08
+
+* Mon Mar 21 2011 Shlomi Fish <shlomif@mandriva.org> 0.70.0-1
++ Revision: 647438
+- import perl-Parser-MGC
 
