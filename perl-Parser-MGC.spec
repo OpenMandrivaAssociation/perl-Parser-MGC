@@ -1,15 +1,15 @@
 %define upstream_name    Parser-MGC
-%define upstream_version 0.08
+%define upstream_version 0.23
 
 Name:		perl-%{upstream_name}
-Version:	%perl_convert_version %{upstream_version}
-Release:	5
+Version:	%{upstream_version}
+Release:	1
 
 Summary:	Build simple recursive-descent parsers
 License:	GPL+ or Artistic
 Group:		Development/Perl
-Url:		https://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module//%{upstream_name}-%{upstream_version}.tar.gz
+Url:		https://metacpan.org/dist/Parser-MGC
+Source0:	https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Parser-MGC-%{upstream_version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
