@@ -1,15 +1,13 @@
 %define upstream_name    Parser-MGC
-%define upstream_version 0.23
-
 Name:		perl-%{upstream_name}
-Version:	%{upstream_version}
-Release:	1
+Version:	0.23
+Release:	2
 
 Summary:	Build simple recursive-descent parsers
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		https://metacpan.org/dist/Parser-MGC
-Source0:	https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Parser-MGC-%{upstream_version}.tar.gz
+Source0:	https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Parser-MGC-%{version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
@@ -33,7 +31,7 @@ its result, or fails and consumes nothing. This makes it simple to
 implement grammars that require backtracking.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
