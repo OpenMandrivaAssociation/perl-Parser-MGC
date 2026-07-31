@@ -2,7 +2,7 @@
 %define upstream_version 0.23
 Name:		perl-%{upstream_name}
 Version:	0.23
-Release:	14
+Release:	1
 
 Summary:	Build simple recursive-descent parsers
 License:	GPL+ or Artistic
@@ -11,6 +11,7 @@ Url:		https://metacpan.org/dist/Parser-MGC
 Source0:	https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Parser-MGC-0.23.tar.gz
 
 BuildRequires:	make
+BuildRequires:	perl(Module::Build)
 BuildRequires:	perl-devel
 BuildRequires:	perl(File::Slurp)
 BuildRequires:	perl(Test::More)
@@ -35,19 +36,20 @@ implement grammars that require backtracking.
 %setup -q -n Parser-MGC-0.23
 
 %build
-perl Makefile.PL INSTALLDIRS=vendor
-%make
+perl Build.PL --installdirs=vendor
+./Build
 
 %check
 # soft: do not fail package on test failures
 set +e
+./Build test || :
 %make test || :
 
 %install
-%makeinstall_std
+./Build install --destdir=%{buildroot} --create_packlist=0
 
 %files
-%doc Changes README LICENSE META.yml
+%doc Changes LICENSE META.yml README
 %{_mandir}/man3/*
 %{perl_vendorlib}/*
 
