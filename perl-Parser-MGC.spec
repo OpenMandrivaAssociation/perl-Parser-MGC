@@ -2,7 +2,7 @@
 %define upstream_version 0.23
 Name:		perl-%{upstream_name}
 Version:	0.23
-Release:	10
+Release:	11
 
 Summary:	Build simple recursive-descent parsers
 License:	GPL+ or Artistic
